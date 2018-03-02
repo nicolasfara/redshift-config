@@ -1,0 +1,36 @@
+ <% define_locals do
+  variable "redshift.localization.provider",  as: :localization_provider
+  variable "redshift.localization.lat",  as: :localization_latitude
+  variable "redshift.localization.lon", as: :localization_longitude
+
+  variable "redshift.temperature.day",   type: :int, as: :temperature_day
+  variable "redshift.temperature.night", type: :int, as: :temperature_night
+
+  variable "redshift.brightness.day",   as: :brightness_day
+  variable "redshift.brightness.night", as: :brightness_night
+
+  variable "redshift.gamma.day",   as: :gamma_day
+  variable "redshift.gamma.night", as: :gamma_night
+end %>
+<%# ────────────────────────────────────────────────────────────────────────┘ %>
+[redshift]
+temp-day=<%= local! :temperature_day %>
+temp-night=<%= local! :temperature_night %>
+
+transition=1
+
+gamma-day=<%= local! :gamma_day %>
+gamma-night=<%= local! :gamma_night %>
+
+location-provider=manual
+adjustment-method=randr
+
+<% if local!(:localization_provider) == "manual" %>
+[manual]
+
+lat=<%= local! :localization_longitude %>
+lon=<%= local! :localization_latitude %>
+<% end %>
+
+
+<%# vim: set filetype=eruby.conf : %>

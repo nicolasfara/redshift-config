@@ -1,0 +1,19 @@
+# => inherits: generic <= #
+
+redshift:
+  localization:
+    provider: manual
+    lat: 44.1474915
+    lon: 12.1274757
+  temperature:
+    day:    4000
+    night:  3600
+  brightness:
+    day:    4000
+    night:  3600
+  gamma:
+    day:    0.9:0.9:0.9
+    night:  0.7:0.7:0.7
+
+
+# vim: set filetype=eruby.yaml :
